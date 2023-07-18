@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <h1>All Quizzes page</h1>
+    <table class="quizzes-table">
+        <thead>
+            <tr>                
+                <th>Quiz name</th>
+                <th>Author</th>
+                <th>Execute</th>
+                <th>Likes</th>
+                <th>Views</th>
+                <th></th>
+            </tr>  
+        </thead>
+        <tbody>
+            {% for quiz in all_quizzes %}            
+            <tr>                
+                <td>{{ quiz.name }}</td>
+                <td>{{ quiz.author.username }}</td> 
+                <td>{{ quiz.execute }}</td>   
+                <td>{{ quiz.likes }}</td>
+                <td>{{ quiz.views }}</td> 
+                <td><a class="quizzes-table-play" href="{% url 'playquiz' quiz_id=quiz.pk %}">Play</a></td>        
+            </tr> 
+            {% endfor %}                       
+        </tbody>   
+    </table>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <h1>Edit quiz page</h1>
+    <form action="{% url 'editquiz-confirm' quiz.pk %}" class="playquiz-form" method="POST">
+        {% csrf_token %}
+        <div class="create-quiz-container">
+            <input class="create-quiz-quizname" name="quiz_name" value="{{quiz.name}}">
+        </div>
+        
+        {% for question, number in questions %}
+        <div class="create-quiz-container">
+            <input class="create-quiz-questiontext" name="question_text_{{number}}" value="{{question.text}}">
+            
+            <label for="A_{{ number }}">A:           
+                <input class="create-quiz-answer" id="A_{{ number }}" name="answer_A_{{ number }}" placeholder="Input answer A" required value="{{ question.answer_a}}"></label><br>
+    
+                <label for="B_{{ number }}">B:          
+                <input class="create-quiz-answer" id="B_{{ number }}" name="answer_B_{{ number }}" placeholder="Input answer B" required value="{{ question.answer_b}}"></label><br>
+    
+                <label for="C_{{ number }}">C:          
+                <input class="create-quiz-answer" id="C_{{ number }}" name="answer_C_{{ number }}" placeholder="Input answer C" required value="{{ question.answer_c}}"></label><br>
+    
+                <label for="D_{{ number }}">D:          
+                <input class="create-quiz-answer" id="D_{{ number }}" name="answer_D_{{ number }}" placeholder="Input answer D" required value="{{ question.answer_d}}"></label><br>
+    
+                <label for="correct_1">Correct answer:         
+                <select class="create-quiz-answer" id="correct_{{ number }}" name="correct_answer_{{ number }}"  required>
+                    <option vlaue=""></option>
+                    {% if question.correct_answer == 'A' %}
+                        <option vlaue="A" selected>A</option>
+                    {% else %}
+                        <option vlaue="A">A</option>
+                    {% endif %}
+
+                    {% if question.correct_answer == 'B' %}
+                        <option vlaue="B" selected>B</option>
+                    {% else %}
+                        <option vlaue="B">B</option>
+                    {% endif %}
+
+                    {% if question.correct_answer == 'C' %}
+                        <option vlaue="C" selected>C</option>
+                    {% else %}
+                        <option vlaue="C">C</option>
+                    {% endif %}
+
+                    {% if question.correct_answer == 'D' %}
+                        <option vlaue="D" selected>D</option>
+                    {% else %}
+                        <option vlaue="D">D</option>
+                    {% endif %}
+                </select></label><br>
+        </div>
+        {% endfor %}   
+        <div style="text-align: right;">
+            <a class="playquiz-button" href="{% url 'myquizzes' %}">Cancel</a>
+            <button class="playquiz-button" type="submit">Update</button>
+        </div>                
+    </form>
+{% endblock %}

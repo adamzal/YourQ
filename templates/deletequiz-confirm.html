@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <h1>Delete quiz confirm page</h1>
+    <p>Quiz name: <b>{{ quiz.name }}</b></p>
+    <p>Quiz category: <b>{{ quiz.category }}</b></p>
+    <p>Quiz author: <b>{{ quiz.author.username }}</b></p>
+    <p>Date of quiz creation: <b>{{ quiz.date_of_creation }}</b></p>
+    <p>Number of quiz's questions: <b>{{ questions.count }}</b></p>
+    {% for question in questions %}
+        <p>Question's text: <b>{{ question.text }}</b></p>
+    {% endfor %}
+
+    <div style="text-align: right;">
+        <a class="playquiz-button" href="{% url 'myquizzes' %}">Anuluj</a>
+        <a class="playquiz-button" href="{% url 'deletequiz-status' quiz.pk %}">Usuń</a>
+    </div>
+{% endblock %}

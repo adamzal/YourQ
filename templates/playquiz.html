@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <h1>Play quiz page</h1>
+    <form class="playquiz-form" method="POST" action = "{% url 'playquiz-status' quiz.pk %}">
+        {% csrf_token %}
+        <div class="playquiz-container">
+            <div class="playquiz-quizname">{{quiz.name}}</div>
+        </div>
+        
+        {% for question in questions %}
+        <div class="playquiz-container">
+            <div class="playquiz-questiontext">{{question.text}}</div>
+            
+            <label class="playquiz-label" for="A_{{ question.pk }}">A:
+            <input id="A_{{ question.pk }}" type="radio" name="question_radio_{{ question.pk }}" value="A" required>
+            <div class="playquiz-answer" id="A_{{ question.pk }}">{{question.answer_a}}</div></label><br>
+
+            <label class="playquiz-label" for="B_{{ question.pk }}">B:
+            <input id="B_{{ question.pk }}" type="radio" name="question_radio_{{ question.pk }}" value="B" required>
+            <div class="playquiz-answer" id="B_{{ question.pk }}">{{question.answer_b}}</div></label><br>
+
+            <label class="playquiz-label" for="C_{{ question.pk }}">C:
+            <input id="C_{{ question.pk }}" type="radio" name="question_radio_{{ question.pk }}" value="C" required>
+            <div class="playquiz-answer" id="C_{{ question.pk }}">{{question.answer_c}}</div></label><br>
+
+            <label class="playquiz-label" for="D_{{ question.pk }}">D:
+            <input id="D_{{ question.pk }}" type="radio" name="question_radio_{{ question.pk }}" value="D" required>
+            <div class="playquiz-answer" id="D_{{ question.pk }}">{{question.answer_d}}</div></label><br>
+        </div>
+        {% endfor %}   
+        <div style="text-align: right;">
+            <a class="playquiz-button" href="{% url 'myquizzes' %}">Anuluj</a>            
+            <button type="submit" class="playquiz-button">Sprawdź</button>
+        </div>              
+    </form>
+{% endblock %}

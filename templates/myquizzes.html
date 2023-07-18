@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <h1>My Quizzes page</h1>
+    <p>You have already {{ my_quizzes_count }} quiz.</p>    
+    <div class="grid-container">
+        {% for quiz in my_quizzes %}  
+        <div class="exist-quiz-container">
+            <div class="exist-quiz-info">
+                <img class="exist-quiz-img" src="">                                                             
+                <p class="exist-quiz-name">{{ quiz.name }}</p>              
+                <p class="exist-quiz-category">{{ quiz.category }}</p>
+            </div>                                 
+            <div class="exist-quiz-option">
+                <a href="{% url 'playquiz' quiz_id=quiz.pk %}">Play</a>
+                <a href="{% url 'editquiz' quiz_id=quiz.pk %}">Edit</a>
+                <a href="{% url 'deletequiz-confirm' quiz_id=quiz.pk %}">Delete</a>
+            </div> 
+        </div> 
+        {% endfor %}
+        <a href="{% url 'createquiz' %}">
+            <div class="add-quiz-container">                 
+                <div class="add-quiz-icon">            
+                    <span class="icon-plus"></span>         
+                </div>                                
+                <p class="add-quiz-p">Create new quiz</p>              
+            </div> 
+        </a> 
+    </div>    
+{% endblock %}

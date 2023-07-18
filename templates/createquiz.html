@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <h1>Create quiz page </h1>
+    <form action="{% url 'createquiz-status' %}"class="create-quiz-form" method="POST">
+        {% csrf_token %}
+        <div class="create-quiz-container">
+            <input class="create-quiz-quizname" name="quiz_name" type="text" maxlength="20" placeholder="Quiz name" required>
+        </div>
+        
+        <div class="create-quiz-container">
+            <input class="create-quiz-questiontext" name="question_text_1" placeholder="Input question's text" required>
+            
+            <label for="A_1">A:           
+            <input class="create-quiz-answer" id="A_1" name="answer_A_1" placeholder="Input answer A" required></label><br>
+
+            <label for="B_1">B:          
+            <input class="create-quiz-answer" id="B_1" name="answer_B_1" placeholder="Input answer B" required></label><br>
+
+            <label for="C_1">C:          
+            <input class="create-quiz-answer" id="C_1" name="answer_C_1" placeholder="Input answer C" required></label><br>
+
+            <label for="D_1">D:          
+            <input class="create-quiz-answer" id="D_1" name="answer_D_1" placeholder="Input answer D" required></label><br>
+
+            <label for="correct_1">Correct answer:         
+            <select class="create-quiz-answer" id="correct_1" name="correct_answer_1"  required>
+                <option vlaue=""></option>
+                <option vlaue="A">A</option>
+                <option vlaue="B">B</option>
+                <option vlaue="C">C</option>
+                <option vlaue="D">D</option>
+            </select></label><br>
+        </div>
+
+        <div id="formContainer"></div>
+        <a id="addFormButton" class="create-link" href="#">
+            <div class="create-container">                
+                <div class="create-quiz-icon">            
+                    <span class="icon-plus"></span>         
+                </div>                                                                          
+            </div> 
+        </a> 
+        <div style="text-align: right;">
+            <button class="playquiz-button" type="submit">Create</button>
+        </div>
+    </form>
+    
+    
+<script>
+var counter = 1;
+
+function addForm() {
+    counter++;
+    var formHtml = '<div class="create-quiz-container">'+
+            '<input class="create-quiz-questiontext" name="question_text_'+counter+'" placeholder="Input question\'s text" required>'+
+            
+            '<label for="A_'+counter+'">A:'+            
+            '<input class="create-quiz-answer" id="A_'+counter+'" name="answer_A_'+counter+'" placeholder="Input answer A" required></label><br>'+
+
+            '<label for="B_'+counter+'">B:'+            
+            '<input class="create-quiz-answer" id="B_'+counter+'" name="answer_B_'+counter+'" placeholder="Input answer B" required></label><br>'+
+
+            '<label for="C_'+counter+'">C:'+            
+            '<input class="create-quiz-answer" id="C_'+counter+'" name="answer_C_'+counter+'" placeholder="Input answer C" required></label><br>'+
+
+            '<label for="D_'+counter+'">D:'+            
+            '<input class="create-quiz-answer" id="D_'+counter+'" name="answer_D_'+counter+'" placeholder="Input answer D" required></label><br>'+
+
+            '<label for="correct_'+counter+'">Correct answer:'+            
+            '<select class="create-quiz-answer" id="correct_'+counter+'" name="correct_answer_'+counter+'"  required>'+
+                '<option vlaue=""></option>'+
+                '<option vlaue="A">A</option>'+
+                '<option vlaue="B">B</option>'+
+                '<option vlaue="C">C</option>'+
+                '<option vlaue="D">D</option>'+
+            '</select></label><br>'+
+        '</div>';
+    $('#formContainer').append(formHtml);
+}
+
+$('#addFormButton').click(function(e) {
+    e.preventDefault();
+    addForm();
+});
+</script>
+     
+{% endblock %}

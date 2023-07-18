@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <h1>Edit quiz confirm page</h1>
+    {% if quiz.name != cheanged_quiz_name %}
+        <p>Old quiz name: <b>{{ quiz.name }}</b></p>
+        <p>New quiz name: <b>{{ cheanged_quiz_name }}</b></p>
+    
+    {% else %}
+        <p>Quiz name: <b>{{ quiz.name }}</b></p>
+    {% endif %}
+    
+    {% for old_question, new_question in questions %}  
+    <div class="create-quiz-container">
+        {% if old_question.text != new_question.text %}
+        <div class="create-quiz-container">
+            <p>Old question's text: <b>{{ old_question.text }}</b></p>
+            <p>New question's text: <b>{{ new_question.text }}</b></p>
+        </div>
+        {% else %}
+            <p>Question's text: <b>{{ old_question.text }}</b></p>
+        {% endif %}
+
+        {% if old_question.answer_a != new_question.answer_a %}
+        <div class="create-quiz-container">
+            <p>Old question's answer a: <b>{{ old_question.answer_a }}</b></p>
+            <p>New question's answer a: <b>{{ new_question.answer_a }}</b></p>
+        </div>
+        {% else %}
+            <p>Question's answer a: <b>{{ old_question.answer_a }}</b></p>
+        {% endif %}
+
+        {% if old_question.answer_b != new_question.answer_b %}
+        <div class="create-quiz-container">
+            <p>Old question's answer b: <b>{{ old_question.answer_b }}</b></p>
+            <p>New question's answer b: <b>{{ new_question.answer_b }}</b></p>
+        </div>
+        {% else %}
+            <p>Question's answer b: <b>{{ old_question.answer_b }}</b></p>
+        {% endif %}
+
+        {% if old_question.answer_c != new_question.answer_c %}
+        <div class="create-quiz-container">
+            <p>Old question's answer c: <b>{{ old_question.answer_c }}</b></p>
+            <p>New question's answer c: <b>{{ new_question.answer_c }}</b></p>
+        </div>
+        {% else %}
+            <p>Question's answer c: <b>{{ old_question.answer_c }}</b></p>
+        {% endif %}
+
+        {% if old_question.answer_d != new_question.answer_d %}
+        <div class="create-quiz-container">
+            <p>Old question's answer d: <b>{{ old_question.answer_d }}</b></p>
+            <p>New question's answer d: <b>{{ new_question.answer_d }}</b></p>
+        </div>
+        {% else %}
+            <p>Question's answer d: <b>{{ old_question.answer_d }}</b></p>
+        {% endif %}
+
+        {% if old_question.correct_answer != new_question.correct_answer %}
+        <div class="create-quiz-container">
+            <p>Old question's correct answer: <b>{{ old_question.correct_answer }}</b></p>
+            <p>New question's correct answer: <b>{{ new_question.correct_answer }}</b></p>
+        </div>
+        {% else %}
+            <p>Question's correct answer: <b>{{ old_question.correct_answer }}</b></p>
+        {% endif %}
+    </div>      
+
+    {% endfor %}
+
+    <div style="text-align: right;">
+        <a class="playquiz-button" href="{% url 'myquizzes' %}">Cancel</a>
+        <a class="playquiz-button" href="{% url 'editquiz-status' quiz=quiz questions=questions %}">Confirm</a>
+    </div>
+{% endblock %}

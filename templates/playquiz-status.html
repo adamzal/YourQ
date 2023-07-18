@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <h1>Play quiz status page {{number_of_good_answers}}/{{number_of_all_answers}}</h1>    
+        {% csrf_token %}
+        <div class="playquiz-container">
+            <div class="playquiz-quizname">{{quiz.name}} </div>
+        </div>
+        
+        {% for question, checked_answer in questions_checked_answers %}
+        <div class="playquiz-container">
+            <div class="playquiz-questiontext">{{question.text}} {{forloop0}}</div>
+            
+            {% if question.correct_answer == 'A' %}
+                <label class="playquiz-label-ok" for="A_{{ question.pk }}">A:            
+                <div class="playquiz-answer" id="A_{{ question.pk }}">{{question.answer_a}}</div></label><br>
+            {% else %}
+                {% if checked_answer == 'A' %}
+                    <label class="playquiz-label-bad" for="A_{{ question.pk }}">A:            
+                    <div class="playquiz-answer" id="A_{{ question.pk }}">{{question.answer_a}}</div></label><br>
+                {% else %}
+                    <label class="playquiz-label" for="A_{{ question.pk }}">A:            
+                    <div class="playquiz-answer" id="A_{{ question.pk }}">{{question.answer_a}}</div></label><br>
+                {% endif %} 
+            {% endif %} 
+            
+            {% if question.correct_answer == 'B' %}
+            <label class="playquiz-label-ok" for="B_{{ question.pk }}">B:        
+            <div class="playquiz-answer" id="B_{{ question.pk }}">{{question.answer_b}}</div></label><br>
+            {% else %}
+                {% if checked_answer == 'B' %}
+                    <label class="playquiz-label-bad" for="B_{{ question.pk }}">B:        
+                    <div class="playquiz-answer" id="B_{{ question.pk }}">{{question.answer_b}}</div></label><br>
+                {% else %}
+                    <label class="playquiz-label" for="B_{{ question.pk }}">B:        
+                    <div class="playquiz-answer" id="B_{{ question.pk }}">{{question.answer_b}}</div></label><br>
+                {% endif %}
+            {% endif %}
+
+            {% if question.correct_answer == 'C' %}
+            <label class="playquiz-label-ok" for="C_{{ question.pk }}">C:            
+            <div class="playquiz-answer" id="C_{{ question.pk }}">{{question.answer_c}}</div></label><br>
+            {% else %}
+                {% if checked_answer == 'C' %}
+                    <label class="playquiz-label-bad" for="C_{{ question.pk }}">C:        
+                    <div class="playquiz-answer" id="C_{{ question.pk }}">{{question.answer_c}}</div></label><br>
+                {% else %}
+                    <label class="playquiz-label" for="C_{{ question.pk }}">C:        
+                    <div class="playquiz-answer" id="C_{{ question.pk }}">{{question.answer_c}}</div></label><br>
+                {% endif %}
+            {% endif %}
+            
+            {% if question.correct_answer == 'D' %}
+            <label class="playquiz-label-ok" for="D_{{ question.pk }}">D:            
+            <div class="playquiz-answer" id="D_{{ question.pk }}">{{question.answer_d}}</div></label><br>
+            {% else %}
+                {% if checked_answer == 'D' %}
+                    <label class="playquiz-label-bad" for="D_{{ question.pk }}">D:        
+                    <div class="playquiz-answer" id="D_{{ question.pk }}">{{question.answer_d}}</div></label><br>
+                {% else %}
+                    <label class="playquiz-label" for="D_{{ question.pk }}">D:        
+                    <div class="playquiz-answer" id="D_{{ question.pk }}">{{question.answer_d}}</div></label><br>
+                {% endif %}
+            {% endif %}
+        </div>
+        {% endfor %}   
+        <div style="text-align: right;">
+            <a class="playquiz-button" href="{% url 'myquizzes' %}">Anuluj</a>            
+            <button type="submit" class="playquiz-button">Sprawdź</button>
+        </div>                  
+{% endblock %}

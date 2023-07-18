@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <h1>Edit quiz status page {{type}}</h1>
+    {% if type == 'OK' %}
+        <div class="status-container-OK">
+            <h2>Your quiz has been updated</h2>
+        </div>
+    {% endif %}
+
+    {% if type == 'ERROR' %}
+        <div class="status-container-ERROR">
+            <h2>Your quiz has NOT been updated</h2>
+        </div>
+    {% endif %}
+{% endblock %}

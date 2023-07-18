@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <h1>Delete quiz status page {{type}}</h1>
+    {% if type == 'OK' %}
+        <div class="status-container-OK">
+            <h2>Your quiz has been deleted</h2>
+        </div>
+    {% endif %}
+
+    {% if type == 'ERROR' %}
+        <div class="status-container-ERROR">
+            <h2>Your quiz has NOT been deleted</h2>
+        </div>
+    {% endif %}
+{% endblock %}
